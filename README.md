@@ -1,6 +1,6 @@
 # Mnem
 
-**USB-C for agent memory.** A shared, local-first persistence layer so multiple agents stop clobbering each other's context.
+**A local-first shared memory bus that lets multiple agents remember together without fighting over files.**
 
 Agents today keep private scratchpads. One Cursor session overwrites another's decisions. Claude Desktop forgets what Hermes just learned. Markdown vaults race on disk. **Mnem** is the shared brain: SQLite + FTS5 is canonical; an Obsidian-compatible markdown vault is a *projection only*.
 
