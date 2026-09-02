@@ -1,6 +1,6 @@
 # Mnem
 
-**A local-first shared memory bus that lets multiple agents remember together without fighting over files.**
+**One brain for every agent — a local-first MCP memory bus with safe concurrent writes, provenance, and an Obsidian-readable vault.**
 
 Agents today keep private scratchpads. One Cursor session overwrites another's decisions. Claude Desktop forgets what Hermes just learned. Markdown vaults race on disk. **Mnem** is the shared brain: SQLite + FTS5 is canonical; an Obsidian-compatible markdown vault is a *projection only*.
 
