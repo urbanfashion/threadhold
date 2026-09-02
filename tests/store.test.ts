@@ -10,8 +10,8 @@ let dbPath: string;
 let store: Store;
 
 beforeEach(() => {
-  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "mnem-test-"));
-  dbPath = path.join(tmpDir, "mnem.db");
+  tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "threadhold-test-"));
+  dbPath = path.join(tmpDir, "threadhold.db");
   store = new Store(dbPath);
 });
 

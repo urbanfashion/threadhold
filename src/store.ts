@@ -93,7 +93,7 @@ function rowToFact(row: FactRow): Fact {
 }
 
 export function defaultDbPath(): string {
-  return path.join(os.homedir(), ".mnem", "mnem.db");
+  return path.join(os.homedir(), ".threadhold", "threadhold.db");
 }
 
 export class Store {
@@ -293,7 +293,7 @@ export class Store {
     const rows = this.db
       .prepare(
         `SELECT * FROM facts WHERE ${clauses.join(" AND ")}
-         ORDER BY created_at DESC LIMIT ?`
+         ORDER BY created_at DESC, rowid DESC LIMIT ?`
       )
       .all(...params) as FactRow[];
     return rows.map(rowToFact);

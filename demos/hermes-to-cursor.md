@@ -1,13 +1,13 @@
 # Hermes → Cursor shared memory demo
 
-Prove that **Hermes** and **Cursor** share one Mnem brain: Hermes `remember`s a fact; Cursor `search`es the same SQLite DB and gets it back. No markdown races.
+Prove that **Hermes** and **Cursor** share one Threadhold brain: Hermes `remember`s a fact; Cursor `search`es the same SQLite DB and gets it back. No markdown races.
 
 ## Setup
 
-1. Build Mnem:
+1. Build Threadhold:
 
 ```bash
-cd mnem
+cd threadhold
 npm i
 npm run build
 ```
@@ -15,11 +15,11 @@ npm run build
 2. Point both agents at the **same** DB + vault:
 
 ```bash
-export MNEM_DB="$HOME/.mnem/mnem.db"
-export MNEM_VAULT="$HOME/mnem/vault"
+export THREADHOLD_DB="$HOME/.threadhold/threadhold.db"
+export THREADHOLD_VAULT="$HOME/.threadhold/vault"
 ```
 
-3. Cursor — merge `adapters/cursor/mcp.json.example` into your MCP config (absolute path to `dist/server.js`, same `MNEM_DB` / `MNEM_VAULT`).
+3. Cursor — merge `adapters/cursor/mcp.json.example` into your MCP config (absolute path to `dist/server.js`, same `THREADHOLD_DB` / `THREADHOLD_VAULT`).
 
 4. Hermes — follow `adapters/hermes/README.md` and launch the same `node dist/server.js` stdio MCP server with the same env.
 
@@ -33,14 +33,14 @@ Cross-agent flow (Hermes writes, Cursor reads):
 import { Store } from "../dist/store.js";
 import { createToolHandlers } from "../dist/tools.js";
 
-const store = new Store(process.env.MNEM_DB);
+const store = new Store(process.env.THREADHOLD_DB);
 const h = createToolHandlers(store);
 
 // Hermes agent remembers
 const r1 = await h.remember({
   content: "Prefer local-first SQLite for agent memory; never race markdown files.",
   kind: "preference",
-  tags: ["architecture", "mnem"],
+  tags: ["architecture", "threadhold"],
   namespace: "demo",
   agent_id: "hermes",
   source: "hermes-session",
@@ -68,4 +68,4 @@ console.log("STATUS", JSON.parse(st.content[0].text));
 
 ## Verified
 
-**2026-09-02** — Cross-agent `remember` (Hermes) → `search` (Cursor) against the same `MNEM_DB` worked: Cursor retrieved the Hermes-written preference; vault stayed a projection of SQLite, not a competing source of truth.
+**2026-09-02** — Cross-agent `remember` (Hermes) → `search` (Cursor) against the same `THREADHOLD_DB` worked: Cursor retrieved the Hermes-written preference; vault stayed a projection of SQLite, not a competing source of truth.

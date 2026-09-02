@@ -1,11 +1,11 @@
 {
-  "name": "mnem",
+  "name": "threadhold",
   "version": "0.1.0",
-  "description": "One brain for every agent — a local-first MCP memory bus with safe concurrent writes, provenance, and an Obsidian-readable vault.",
+  "description": "One brain for every agent \u2014 a local-first MCP memory bus with safe concurrent writes, provenance, and an Obsidian-readable vault.",
   "type": "module",
   "main": "dist/server.js",
   "bin": {
-    "mnem": "dist/server.js"
+    "threadhold": "dist/server.js"
   },
   "scripts": {
     "build": "tsc && cp src/schema.sql dist/schema.sql",

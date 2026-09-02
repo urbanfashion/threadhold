@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
 export function defaultVaultPath() {
-    return process.env.MNEM_VAULT?.trim() || path.join(os.homedir(), "mnem", "vault");
+    return process.env.THREADHOLD_VAULT?.trim() || path.join(os.homedir(), ".threadhold", "vault");
 }
 function ensureDir(dir) {
     fs.mkdirSync(dir, { recursive: true });
@@ -48,8 +48,8 @@ export class Vault {
         const other = active.filter((f) => !preferences.includes(f) &&
             !decisions.includes(f) &&
             !projects.includes(f));
-        this.writeFile("preferences.md", `# Preferences\n\n> Regenerated from Mnem SQLite. Do not edit as source of truth.\n\n${sectionForKind("preference", preferences)}`);
-        this.writeFile("decisions.md", `# Decisions\n\n> Regenerated from Mnem SQLite. Do not edit as source of truth.\n\n${sectionForKind("decision", decisions)}`);
+        this.writeFile("preferences.md", `# Preferences\n\n> Regenerated from Threadhold SQLite. Do not edit as source of truth.\n\n${sectionForKind("preference", preferences)}`);
+        this.writeFile("decisions.md", `# Decisions\n\n> Regenerated from Threadhold SQLite. Do not edit as source of truth.\n\n${sectionForKind("decision", decisions)}`);
         // Group projects by namespace (project:foo) or single projects.md rollup
         const byProject = new Map();
         for (const f of projects) {
@@ -66,10 +66,10 @@ export class Vault {
             byProject.get(safe).push(f);
         }
         for (const [name, facts] of byProject) {
-            this.writeFile(path.join("projects", `${name}.md`), `# Project: ${name}\n\n> Regenerated from Mnem SQLite.\n\n${sectionForKind("project", facts)}`);
+            this.writeFile(path.join("projects", `${name}.md`), `# Project: ${name}\n\n> Regenerated from Threadhold SQLite.\n\n${sectionForKind("project", facts)}`);
         }
         // Notes / other kinds land in notes.md for browseability
-        this.writeFile("notes.md", `# Notes\n\n> Regenerated from Mnem SQLite.\n\n${sectionForKind("note", other)}`);
+        this.writeFile("notes.md", `# Notes\n\n> Regenerated from Threadhold SQLite.\n\n${sectionForKind("note", other)}`);
         this.appendLog(active);
     }
     writeFile(rel, content) {
@@ -87,7 +87,7 @@ export class Vault {
         }
         else {
             existing =
-                "# Mnem vault log\n\nAppend-only projection log. Source of truth is SQLite.\n\n";
+                "# Threadhold vault log\n\nAppend-only projection log. Source of truth is SQLite.\n\n";
         }
         const stamped = new Date().toISOString();
         const line = `- ${stamped} · projected ${active.length} active fact(s)\n`;

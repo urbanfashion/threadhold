@@ -17,14 +17,14 @@ import {
 } from "./tools.js";
 import { zodToJsonSchema } from "./zod-json.js";
 
-const store = new Store(process.env.MNEM_DB);
+const store = new Store(process.env.THREADHOLD_DB);
 const handlers = createToolHandlers(store);
 
 const TOOLS = [
   {
     name: "remember",
     description:
-      "Persist a fact into shared Mnem memory (SQLite). Optional vault projection.",
+      "Persist a fact into shared Threadhold memory (SQLite). Optional vault projection.",
     inputSchema: zodToJsonSchema(RememberSchema),
   },
   {
@@ -61,7 +61,7 @@ const TOOLS = [
 ] as const;
 
 const server = new Server(
-  { name: "mnem", version: "0.1.0" },
+  { name: "threadhold", version: "0.1.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -120,6 +120,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
-  console.error("mnem server failed:", err);
+  console.error("threadhold server failed:", err);
   process.exit(1);
 });

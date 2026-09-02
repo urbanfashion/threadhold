@@ -1,11 +1,11 @@
 {
   "mcpServers": {
-    "mnem": {
+    "threadhold": {
       "command": "node",
-      "args": ["/absolute/path/to/mnem/dist/server.js"],
+      "args": ["/absolute/path/to/threadhold/dist/server.js"],
       "env": {
-        "MNEM_DB": "/Users/you/.mnem/mnem.db",
-        "MNEM_VAULT": "/Users/you/mnem/vault"
+        "THREADHOLD_DB": "/Users/you/.threadhold/threadhold.db",
+        "THREADHOLD_VAULT": "/Users/you/.threadhold/vault"
       }
     }
   }

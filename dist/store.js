@@ -34,7 +34,7 @@ function rowToFact(row) {
     };
 }
 export function defaultDbPath() {
-    return path.join(os.homedir(), ".mnem", "mnem.db");
+    return path.join(os.homedir(), ".threadhold", "threadhold.db");
 }
 export class Store {
     db;
@@ -208,7 +208,7 @@ export class Store {
         params.push(limit);
         const rows = this.db
             .prepare(`SELECT * FROM facts WHERE ${clauses.join(" AND ")}
-         ORDER BY created_at DESC LIMIT ?`)
+         ORDER BY created_at DESC, rowid DESC LIMIT ?`)
             .all(...params);
         return rows.map(rowToFact);
     }

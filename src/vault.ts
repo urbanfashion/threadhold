@@ -4,7 +4,7 @@ import os from "node:os";
 import type { Fact, Store } from "./store.js";
 
 export function defaultVaultPath(): string {
-  return process.env.MNEM_VAULT?.trim() || path.join(os.homedir(), "mnem", "vault");
+  return process.env.THREADHOLD_VAULT?.trim() || path.join(os.homedir(), ".threadhold", "vault");
 }
 
 function ensureDir(dir: string): void {
@@ -70,12 +70,12 @@ export class Vault {
 
     this.writeFile(
       "preferences.md",
-      `# Preferences\n\n> Regenerated from Mnem SQLite. Do not edit as source of truth.\n\n${sectionForKind("preference", preferences)}`
+      `# Preferences\n\n> Regenerated from Threadhold SQLite. Do not edit as source of truth.\n\n${sectionForKind("preference", preferences)}`
     );
 
     this.writeFile(
       "decisions.md",
-      `# Decisions\n\n> Regenerated from Mnem SQLite. Do not edit as source of truth.\n\n${sectionForKind("decision", decisions)}`
+      `# Decisions\n\n> Regenerated from Threadhold SQLite. Do not edit as source of truth.\n\n${sectionForKind("decision", decisions)}`
     );
 
     // Group projects by namespace (project:foo) or single projects.md rollup
@@ -95,14 +95,14 @@ export class Vault {
     for (const [name, facts] of byProject) {
       this.writeFile(
         path.join("projects", `${name}.md`),
-        `# Project: ${name}\n\n> Regenerated from Mnem SQLite.\n\n${sectionForKind("project", facts)}`
+        `# Project: ${name}\n\n> Regenerated from Threadhold SQLite.\n\n${sectionForKind("project", facts)}`
       );
     }
 
     // Notes / other kinds land in notes.md for browseability
     this.writeFile(
       "notes.md",
-      `# Notes\n\n> Regenerated from Mnem SQLite.\n\n${sectionForKind("note", other)}`
+      `# Notes\n\n> Regenerated from Threadhold SQLite.\n\n${sectionForKind("note", other)}`
     );
 
     this.appendLog(active);
@@ -124,7 +124,7 @@ export class Vault {
       existing = fs.readFileSync(logPath, "utf8");
     } else {
       existing =
-        "# Mnem vault log\n\nAppend-only projection log. Source of truth is SQLite.\n\n";
+        "# Threadhold vault log\n\nAppend-only projection log. Source of truth is SQLite.\n\n";
     }
 
     const stamped = new Date().toISOString();

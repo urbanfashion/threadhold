@@ -1,4 +1,4 @@
--- Mnem canonical schema: SQLite + FTS5
+-- Threadhold canonical schema: SQLite + FTS5
 -- Markdown vault is a projection only; this DB is the source of truth.
 
 PRAGMA journal_mode = WAL;

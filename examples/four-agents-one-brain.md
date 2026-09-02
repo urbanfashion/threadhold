@@ -1,6 +1,6 @@
 # Four agents, one brain
 
-Scenario: Cursor, Claude Desktop, Hermes, and a CLI agent all talk to the same Mnem MCP server.
+Scenario: Cursor, Claude Desktop, Hermes, and a CLI agent all talk to the same Threadhold MCP server.
 
 ## 1. Cursor remembers a preference
 
@@ -12,7 +12,7 @@ search({ query: "TypeScript strict" })
 
 ## 3. Hermes records a decision
 
-remember({ content: "SQLite+FTS5 canonical; vault is projection", kind: "decision", namespace: "project:mnem", agent_id: "hermes" })
+remember({ content: "SQLite+FTS5 canonical; vault is projection", kind: "decision", namespace: "project:threadhold", agent_id: "hermes" })
 
 ## 4. CLI supersedes
 
@@ -22,4 +22,4 @@ supersede({ id: "<ulid>", content: "Also expose read-only HTTP later", agent_id:
 
 forget({ id: "<ulid>" })
 
-Result: four agents, zero clobber, one ~/.mnem/mnem.db.
+Result: four agents, zero clobber, one ~/.threadhold/threadhold.db.

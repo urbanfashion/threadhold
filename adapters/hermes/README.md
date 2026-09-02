@@ -1,4 +1,4 @@
-# Hermes Mnem adapter
+# Hermes Threadhold adapter
 
 Shared local-first brain via stdio MCP.
 
@@ -8,7 +8,7 @@ Shared local-first brain via stdio MCP.
 
 2. launch dist/server.js via node
 
-3. share MNEM_DB and MNEM_VAULT env
+3. share THREADHOLD_DB and THREADHOLD_VAULT env
 
 ## Notes
 

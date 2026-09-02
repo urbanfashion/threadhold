@@ -1,13 +1,13 @@
-# Mnem
+# Threadhold
 
 **One brain for every agent — a local-first MCP memory bus with safe concurrent writes, provenance, and an Obsidian-readable vault.**
 
-Agents today keep private scratchpads. One Cursor session overwrites another's decisions. Claude Desktop forgets what Hermes just learned. Markdown vaults race on disk. **Mnem** is the shared brain: SQLite + FTS5 is canonical; an Obsidian-compatible markdown vault is a *projection only*.
+Agents today keep private scratchpads. One Cursor session overwrites another's decisions. Claude Desktop forgets what Hermes just learned. Markdown vaults race on disk. **Threadhold** is the shared brain: SQLite + FTS5 is canonical; an Obsidian-compatible markdown vault is a *projection only*.
 
 ## Pitch
 
 - **Cross-agent clobber ends here** — one DB, many MCP clients
-- **Local-first** — ~/.mnem/mnem.db, no cloud required
+- **Local-first** — ~/.threadhold/threadhold.db, no cloud required
 - **Searchable** — FTS5 full-text over facts
 - **Supersede, do not mutate** — history preserved; soft-delete via forget
 - **Vault as mirror** — regenerate preferences.md, decisions.md, projects/, _log.md from the DB
@@ -15,7 +15,8 @@ Agents today keep private scratchpads. One Cursor session overwrites another's d
 ## Install
 
 ```bash
-cd mnem
+git clone https://github.com/urbanfashion/threadhold.git
+cd threadhold
 npm i
 npm run build
 npm test
@@ -23,9 +24,9 @@ npm test
 
 Requires Node >= 18 (native better-sqlite3).
 
-Default DB: ~/.mnem/mnem.db
-Default vault: ~/mnem/vault/ (override with MNEM_VAULT)
-Optional DB override: MNEM_DB
+Default DB: ~/.threadhold/threadhold.db
+Default vault: ~/.threadhold/vault/ (override with THREADHOLD_VAULT)
+Optional DB override: THREADHOLD_DB
 
 ## MCP tools
 
@@ -46,10 +47,10 @@ See adapters/cursor/mcp.json.example.
 ```json
 {
   "mcpServers": {
-    "mnem": {
+    "threadhold": {
       "command": "node",
-      "args": ["/absolute/path/to/mnem/dist/server.js"],
-      "env": { "MNEM_VAULT": "/Users/you/mnem/vault" }
+      "args": ["/absolute/path/to/threadhold/dist/server.js"],
+      "env": { "THREADHOLD_VAULT": "/Users/you/.threadhold/vault" }
     }
   }
 }
@@ -77,9 +78,9 @@ npm test
 Agents (Cursor / Claude / Hermes)
         |  MCP stdio
         v
-   mnem server  -->  ~/.mnem/mnem.db  (SQLite + FTS5, WAL)
+   threadhold server  -->  ~/.threadhold/threadhold.db  (SQLite + FTS5, WAL)
                         |
-                        +-- project -->  ~/mnem/vault/
+                        +-- project -->  ~/.threadhold/vault/
 ```
 
 ## License

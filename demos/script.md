@@ -1,4 +1,4 @@
-# Mnem — 90-second demo
+# Threadhold — 90-second demo
 
 **0:00 — Hook**
 Four agents. One brain. No more overwriting each others markdown.
@@ -6,7 +6,7 @@ Four agents. One brain. No more overwriting each others markdown.
 **0:10 — Problem**
 Two agents edit decisions.md. Last write wins. Context lost.
 
-**0:20 — Introduce Mnem**
+**0:20 — Introduce Threadhold**
 USB-C for agent memory. Local MCP. SQLite is truth; vault is a mirror.
 
 **0:35 — Live remember**

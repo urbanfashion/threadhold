@@ -5,12 +5,12 @@ import { CallToolRequestSchema, ListToolsRequestSchema, } from "@modelcontextpro
 import { Store } from "./store.js";
 import { createToolHandlers, RememberSchema, RecallSchema, SupersedeSchema, SearchSchema, ListRecentSchema, ForgetSchema, } from "./tools.js";
 import { zodToJsonSchema } from "./zod-json.js";
-const store = new Store(process.env.MNEM_DB);
+const store = new Store(process.env.THREADHOLD_DB);
 const handlers = createToolHandlers(store);
 const TOOLS = [
     {
         name: "remember",
-        description: "Persist a fact into shared Mnem memory (SQLite). Optional vault projection.",
+        description: "Persist a fact into shared Threadhold memory (SQLite). Optional vault projection.",
         inputSchema: zodToJsonSchema(RememberSchema),
     },
     {
@@ -44,7 +44,7 @@ const TOOLS = [
         inputSchema: { type: "object", properties: {} },
     },
 ];
-const server = new Server({ name: "mnem", version: "0.1.0" }, { capabilities: { tools: {} } });
+const server = new Server({ name: "threadhold", version: "0.1.0" }, { capabilities: { tools: {} } });
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tools: [...TOOLS],
 }));
@@ -97,7 +97,7 @@ async function main() {
     await server.connect(transport);
 }
 main().catch((err) => {
-    console.error("mnem server failed:", err);
+    console.error("threadhold server failed:", err);
     process.exit(1);
 });
 //# sourceMappingURL=server.js.map
