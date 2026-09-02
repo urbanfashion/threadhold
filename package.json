@@ -1,7 +1,7 @@
 {
   "name": "mnem",
   "version": "0.1.0",
-  "description": "Shared persistence layer between agents — local-first MCP server for cross-agent memory",
+  "description": "A local-first shared memory bus that lets multiple agents remember together without fighting over files.",
   "type": "module",
   "main": "dist/server.js",
   "bin": {
