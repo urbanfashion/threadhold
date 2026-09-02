@@ -1,7 +1,7 @@
 {
   "name": "mnem",
   "version": "0.1.0",
-  "description": "A local-first shared memory bus that lets multiple agents remember together without fighting over files.",
+  "description": "One brain for every agent — a local-first MCP memory bus with safe concurrent writes, provenance, and an Obsidian-readable vault.",
   "type": "module",
   "main": "dist/server.js",
   "bin": {
