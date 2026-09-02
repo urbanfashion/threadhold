@@ -1,0 +1,41 @@
+{
+  "name": "mnem",
+  "version": "0.1.0",
+  "description": "Shared persistence layer between agents — local-first MCP server for cross-agent memory",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "mnem": "dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc && cp src/schema.sql dist/schema.sql",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "mcp",
+    "memory",
+    "agents",
+    "sqlite",
+    "fts5"
+  ],
+  "author": "Michael Gentile",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "better-sqlite3": "^11.9.1",
+    "ulid": "^2.3.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

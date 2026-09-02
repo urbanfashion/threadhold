@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "mnem": {
+      "command": "node",
+      "args": ["/absolute/path/to/mnem/dist/server.js"],
+      "env": {
+        "MNEM_DB": "/Users/you/.mnem/mnem.db",
+        "MNEM_VAULT": "/Users/you/mnem/vault"
+      }
+    }
+  }
+}
